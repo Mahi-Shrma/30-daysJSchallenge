@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>Event Handling</h1>
+    <P id="para">JavaScript Events are actions or occurrences that happen in the browser. They can be triggered by various user interactions or by the browser itself.</P>
+    <p id="para2"></p>
+    <img id="img" src="https://images.pexels.com/photos/4681107/pexels-photo-4681107.jpeg?auto=compress&cs=tinysrgb&w=600" width="200px" height="200px"><br><br>
+    <button id="btn">Click Here</button>
+    <input placeholder="Enter your name" id="input"></input>
+    <br><br>
+    <form>
+        <label for="name">Name:</label>
+        <input id="name" placeholder="Enter your name"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email"><br><br>
+        <label for="dropdown">Job Role:</label>
+        <select id="dropdown" name="Select the job role">
+            <option value="Frontend">FrontEnd</option>
+            <option value="Backend">BackEnd</option>
+            <option value="Software Engineer">Software Engineer</option>
+        </select>
+        <br><br>
+        <button id="submit">Submit</button>
+    </form>
+        <p id="para3"> Your selected job role is : </p>
+
+        <ul id="list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+        </ul>
+
+    <!-- <div id="container"></div>
+    <button id="add-child">Add</button> -->
+    <div id="parent"></div>
+    <button id="add-child">Add Child Element</button>
+</body>
+<script>
+
+// Activity 1 => Basic Event Handling
+
+//  Task 1
+   const btn = document.getElementById("btn");
+   btn.addEventListener('click',function(){
+    document.querySelector('h1').innerHTML = "JS Challenge Day 10"
+   })
+   
+//    const re = document.getElementById("re");
+//    re.outerHTML = '<b> HII MAHI </b>';
+   
+// Task 2    
+   const image = document.querySelector('#img');
+   image.addEventListener('dblclick',function(){
+    if (image.style.display === 'none') { 
+                image.style.display = 'block'; 
+            } 
+            else { 
+                image.style.display= 'none';
+            } 
+   },false)
+
+//  Activity 2 => Mouse Events
+
+// Task 3
+const para = document.getElementById("para");
+para.addEventListener('mouseover', function(){
+    para.style.backgroundColor = 'yellow';
+},false)
+
+// Task 4 
+para.addEventListener('mouseout', function(){
+    para.style.backgroundColor = 'pink';
+})
+
+// Activity 3 => Keyboard Events
+
+// Task 5
+const input= document.getElementById("input");
+input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+        console.log('Enter key is pressed');
+    }
+    else if(e.key === ' '){
+        console.log('Spacebar is pressed');
+    }
+    else if(e.key === 'Backspace'){
+        console.log('Backspace is pressed');
+    }else{
+        console.log('Another key is pressed');
+    }
+},false)
+
+// Task 6
+input.addEventListener('keyup', function(event){
+    const val = event.target.value;
+    document.getElementById("para2").textContent = val;
+},false)
+
+// Activity 4 => Form Events
+
+// Task 7
+document.getElementById("submit").addEventListener('submit',function(e){
+    e.preventDefault();
+})
+
+// Task 8
+const select = document.getElementById("dropdown");
+select.addEventListener('change', function(e){
+    let tar = e.target.value;
+    let p=document.getElementById('para3');
+    p.textContent = p.innerHTML + tar;
+})
+
+// Activity 5 => Event Delegation
+
+// Task 9 
+const list= document.getElementById("list");
+list.addEventListener('click',function(e){
+    if(e.target.tagName === 'LI'){
+        console.log(e.target.textContent);
+    }
+})
+
+// Task 10 
+// document.getElementById("add").addEventListener('click',function(){
+//     let cont = document.getElementById("container");
+//     cont.innerHTML="Added new child"
+//     //const li =document.createElement('li').innerHTML = "Added new child";
+//     // cont.appendChild('li');
+// })
+
+document.getElementById('parent').addEventListener('click', function(e){
+            if (e.target && e.target.classList.contains('child')) {
+                console.log('Child element clicked:', event.target);
+            }
+        })
+         
+        document.getElementById('add-child').addEventListener('click', function(e){
+            const newChild = document.createElement('div');
+            newChild.className = 'child';
+            newChild.textContent = 'I am a dynamically added child';
+            document.getElementById('parent').appendChild(newChild);
+        })
+
+</script>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-color{
+           background-color: aquamarine;
+           padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="head">DOM Manipulation</h1>
+<div class="box1">
+    <div id="one">Hello, Good Morning to all.</div>
+</div>
+
+<p id="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ad enim possimus?</p>
+
+<div class="list">
+    <ul id="list-element">
+        <li>Computer Networking</li>
+        <li>DBMS</li>
+        <li>Programming</li>
+    </ul>
+</div>
+
+<button id ="btn">Click</button>
+
+</body>
+
+<script>
+    // Day 09: Dom Manipulation
+
+    // Activity 1: Selecting and Manipulation Elements
+
+    // Task 1:
+    document.getElementById("one").innerHTML="Welcome, Mahi Sharma!!";
+
+    // Task 2 :
+    //document.getElementsByClassName("box1").style.backgroundColor="yellow";
+    const box1 = document.getElementsByClassName("box1");
+    for (let i = 0; i < box1.length; i++) {
+        box1[i].style.backgroundColor =" yellow";
+    }
+
+    // Activity 2: Creating and Appending Elements
+
+    // Task 3 :
+    let div = document.createElement("div")
+    div.innerHTML="Creating a new element"
+    document.body.append(div)
+
+    //  Task 4 :
+    const li= document.createElement('li')
+    li.innerHTML="Computer Architecture";
+    document.querySelector("#list-element").appendChild(li);
+
+    // Activity 3 : Removing Elements
+
+    // Task 5 :
+    const para = document.querySelector("p").remove();
+    
+    // Task 6 :
+    //const last = document.querySelector('ul').remove('li:last-child');
+    const last = document.getElementById('list-element').querySelector('li:last-child');
+    last.remove();
+
+    // Activity 4 : Modifying Attributes and Classes
+
+    // Task 7 :
+    const heading = document.getElementById('head')
+    heading.setAttribute("id","myHeading");
+
+    // Task 8 :
+    const btn = document.getElementById("btn")
+    btn.classList.add("bg-color")
+
+    // Activity 5 : Event Handling
+
+    // Task 9:
+    btn.addEventListener('click', function(){
+        heading.innerHTML = "Yahooo!!! you have clicked the button";
+    },false)
+
+    // Task 10:
+
+    btn.addEventListener('mouseover', function(){
+     btn.style.borderColor ="yellow";
+    },false)
+
+
+</script>
+</html>
